@@ -30,7 +30,13 @@
     CGPoint target = CGPointMake(self.view.center.x - view.frame.size.width/2, self.view.center.y - view.frame.size.height/2);
     CGFloat xIncrement = (target.x - view.frame.origin.x)/100;
     CGFloat yIncrement = (target.y - view.frame.origin.y)/100;
-    [view setBounds:CGRectMake(view.bounds.origin.x + xIncrement, view.bounds.origin.y + yIncrement, view.bounds.size.width, view.bounds.size.height)];
+    
+    view.frame =CGRectMake(view.frame.origin.x + xIncrement, view.frame.origin.y + yIncrement, view.frame.size.width, view.frame.size.height);
+}
+
+- (void)update: (NSTimer *)timer
+{
+    [self moveTowardsCenterForView:self.bug];
 }
 
 typedef enum
@@ -89,21 +95,19 @@ typedef enum
 {
     [super viewDidLoad];
     UIImage *image = [UIImage imageNamed:@"bug.png"];
-    self.bug = [[Bug alloc] initWithFrame:CGRectMake(self.view.center.x-image.size.width/2, self.view.center.y-image.size.height/2, image.size.width, image.size.height)];
+    CGPoint pos = [self getRandomLocationOutsideBounds:image.size];
+//    self.bug = [[Bug alloc] initWithFrame:CGRectMake(pos.x-image.size.width/2, pos.y-image.size.height/2, image.size.width, image.size.height)];
+    self.bug = [[Bug alloc] initWithFrame:CGRectMake(pos.x, pos.y, image.size.width, image.size.height)];
     self.bug.backgroundColor = [UIColor clearColor];
     self.bug.opaque = NO;
     self.bug.image = image;
+    self.bug.contentMode = UIViewContentModeRedraw;
     [self.view addSubview:self.bug];
     
     UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self.bug action:@selector(pan:)];
     [self.bug addGestureRecognizer:pangr];
 
-
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.timer fire];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

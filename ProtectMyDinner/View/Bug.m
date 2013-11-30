@@ -28,6 +28,7 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
+    NSLog(@"draw, %f, %f",self.bounds.origin.x, self.bounds.origin.y);
     [self.image drawInRect:self.bounds];
 }
 
