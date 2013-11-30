@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84123BF518496F3300FC3793 /* Bug.m in Sources */ = {isa = PBXBuildFile; fileRef = 84123BF418496F3300FC3793 /* Bug.m */; };
 		847F6926184659F40066BAFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6925184659F40066BAFC /* Foundation.framework */; };
 		847F6928184659F40066BAFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6927184659F40066BAFC /* CoreGraphics.framework */; };
 		847F692A184659F40066BAFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6929184659F40066BAFC /* UIKit.framework */; };
@@ -21,7 +22,6 @@
 		847F694F184659F40066BAFC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847F694D184659F40066BAFC /* InfoPlist.strings */; };
 		847F6951184659F40066BAFC /* ProtectMyDinnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F6950184659F40066BAFC /* ProtectMyDinnerTests.m */; };
 		847F695F18465A7E0066BAFC /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F695E18465A7E0066BAFC /* GameViewController.m */; };
-		847F696218490C410066BAFC /* Bug.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F696118490C410066BAFC /* Bug.m */; };
 		847F696518490F740066BAFC /* bug.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F696418490F740066BAFC /* bug.png */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84123BF318496F3300FC3793 /* Bug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bug.h; path = View/Bug.h; sourceTree = "<group>"; };
+		84123BF418496F3300FC3793 /* Bug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bug.m; path = View/Bug.m; sourceTree = "<group>"; };
 		847F6922184659F40066BAFC /* ProtectMyDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtectMyDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F6925184659F40066BAFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		847F6927184659F40066BAFC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,8 +57,6 @@
 		847F6950184659F40066BAFC /* ProtectMyDinnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProtectMyDinnerTests.m; sourceTree = "<group>"; };
 		847F695D18465A7E0066BAFC /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Controller/GameViewController.h; sourceTree = "<group>"; };
 		847F695E18465A7E0066BAFC /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = Controller/GameViewController.m; sourceTree = "<group>"; };
-		847F696018490C410066BAFC /* Bug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bug.h; path = View/Bug.h; sourceTree = "<group>"; };
-		847F696118490C410066BAFC /* Bug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bug.m; path = View/Bug.m; sourceTree = "<group>"; };
 		847F696418490F740066BAFC /* bug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bug.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,8 +169,8 @@
 		847F695B18465A290066BAFC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				847F696018490C410066BAFC /* Bug.h */,
-				847F696118490C410066BAFC /* Bug.m */,
+				84123BF318496F3300FC3793 /* Bug.h */,
+				84123BF418496F3300FC3793 /* Bug.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			files = (
 				847F695F18465A7E0066BAFC /* GameViewController.m in Sources */,
 				847F6936184659F40066BAFC /* GameAppDelegate.m in Sources */,
-				847F696218490C410066BAFC /* Bug.m in Sources */,
+				84123BF518496F3300FC3793 /* Bug.m in Sources */,
 				847F6932184659F40066BAFC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +503,7 @@
 				847F6956184659F40066BAFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		847F6957184659F40066BAFC /* Build configuration list for PBXNativeTarget "ProtectMyDinnerTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +512,7 @@
 				847F6959184659F40066BAFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

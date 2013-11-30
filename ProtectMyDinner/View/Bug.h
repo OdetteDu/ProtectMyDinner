@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Bug : UIImageView
-
+@interface Bug : UIView
+@property (strong, nonatomic) UIImage *image;
+- (void)pan: (UIPanGestureRecognizer *)recognizer;
 @end

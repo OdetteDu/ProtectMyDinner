@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pyb-5t-KeW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <scene sceneID="PaW-Hd-Qbh">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="GameViewController" sceneMemberID="viewController">
+                <viewController id="pyb-5t-KeW" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WLe-9a-jq9"/>
-                        <viewControllerLayoutGuide type="bottom" id="E34-o2-fjS"/>
+                        <viewControllerLayoutGuide type="top" id="lcT-QZ-kkD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rf7-cX-sm1"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="edX-cj-wBq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <view key="view" contentMode="scaleToFill" id="72X-Dl-2b2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="gamePanel" destination="edX-cj-wBq" id="65j-Bg-e8q"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWt-JT-aFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nXE-3c-7re">
+                    <connections>
+                        <action selector="tap:" destination="pyb-5t-KeW" id="MB5-W6-vqx"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="376" y="76"/>
+            <point key="canvasLocation" x="535" y="86"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
