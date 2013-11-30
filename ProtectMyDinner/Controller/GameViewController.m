@@ -16,15 +16,6 @@
 
 @implementation GameViewController
 
-- (Bug *) bug
-{
-    if(!_bug)
-    {
-        _bug = [[Bug alloc] init];
-    }
-    return _bug;
-}
-
 - (void)moveTowardsCenterForView: (UIView *)view
 {
     CGPoint target = CGPointMake(self.view.center.x - view.frame.size.width/2, self.view.center.y - view.frame.size.height/2);
@@ -91,21 +82,18 @@ typedef enum
     return self;
 }
 
+#define BugSizeWidth 100
+#define BugSizeHeight 100
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage *image = [UIImage imageNamed:@"bug.png"];
-    CGPoint pos = [self getRandomLocationOutsideBounds:image.size];
-//    self.bug = [[Bug alloc] initWithFrame:CGRectMake(pos.x-image.size.width/2, pos.y-image.size.height/2, image.size.width, image.size.height)];
-    self.bug = [[Bug alloc] initWithFrame:CGRectMake(pos.x, pos.y, image.size.width, image.size.height)];
-    self.bug.backgroundColor = [UIColor clearColor];
-    self.bug.opaque = NO;
-    self.bug.image = image;
-    self.bug.contentMode = UIViewContentModeRedraw;
-    [self.view addSubview:self.bug];
     
-    UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self.bug action:@selector(pan:)];
-    [self.bug addGestureRecognizer:pangr];
+    CGPoint pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+    self.bug = [[Bug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+    
+    
+    [self.view addSubview:self.bug];
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
 }

@@ -20,7 +20,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        UIImage *image = [UIImage imageNamed:@"bug.png"];
+        self.image = image;
+        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
+        UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        [self addGestureRecognizer:pangr];
     }
     return self;
 }
@@ -28,7 +33,6 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    NSLog(@"draw, %f, %f",self.bounds.origin.x, self.bounds.origin.y);
     [self.image drawInRect:self.bounds];
 }
 

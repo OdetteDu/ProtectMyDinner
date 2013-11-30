@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ProtectMyDinner/Controller/GameViewController.m"
-            timestampString = "407483109.679244"
+            timestampString = "407484502.878736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "-moveTowardsCenterForView:"
             landmarkType = "5">
          </BreakpointContent>
