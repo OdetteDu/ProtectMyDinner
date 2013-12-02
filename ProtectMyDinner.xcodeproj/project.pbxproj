@@ -15,6 +15,7 @@
 		84602491184C0C2700135E17 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84602490184C0C2700135E17 /* CoreMotion.framework */; };
 		84602494184C11CA00135E17 /* FlyingBug.m in Sources */ = {isa = PBXBuildFile; fileRef = 84602493184C11CA00135E17 /* FlyingBug.m */; };
 		84602497184C1F9500135E17 /* BlowDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 84602496184C1F9500135E17 /* BlowDetector.m */; };
+		846024A6184C59F400135E17 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846024A5184C59F400135E17 /* MenuViewController.m */; };
 		847F6926184659F40066BAFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6925184659F40066BAFC /* Foundation.framework */; };
 		847F6928184659F40066BAFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6927184659F40066BAFC /* CoreGraphics.framework */; };
 		847F692A184659F40066BAFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6929184659F40066BAFC /* UIKit.framework */; };
@@ -58,6 +59,8 @@
 		84602493184C11CA00135E17 /* FlyingBug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlyingBug.m; path = View/FlyingBug.m; sourceTree = "<group>"; };
 		84602495184C1F9500135E17 /* BlowDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlowDetector.h; sourceTree = "<group>"; };
 		84602496184C1F9500135E17 /* BlowDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlowDetector.m; sourceTree = "<group>"; };
+		846024A4184C59F400135E17 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Controller/MenuViewController.h; sourceTree = "<group>"; };
+		846024A5184C59F400135E17 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Controller/MenuViewController.m; sourceTree = "<group>"; };
 		847F6922184659F40066BAFC /* ProtectMyDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtectMyDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F6925184659F40066BAFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		847F6927184659F40066BAFC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -214,6 +217,8 @@
 			children = (
 				847F695D18465A7E0066BAFC /* GameViewController.h */,
 				847F695E18465A7E0066BAFC /* GameViewController.m */,
+				846024A4184C59F400135E17 /* MenuViewController.h */,
+				846024A5184C59F400135E17 /* MenuViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				847F6932184659F40066BAFC /* main.m in Sources */,
 				8460248F184C0BE200135E17 /* CMMotionManager+Shared.m in Sources */,
 				84602494184C11CA00135E17 /* FlyingBug.m in Sources */,
+				846024A6184C59F400135E17 /* MenuViewController.m in Sources */,
 				8460248C184C08FB00135E17 /* LightBug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

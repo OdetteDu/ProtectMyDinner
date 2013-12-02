@@ -23,6 +23,9 @@
 @property (strong, nonatomic) BlowDetector *blowDetector;
 @property (nonatomic) BOOL isBlowDetectorOn;
 @property (nonatomic) NSInteger count;
+@property (nonatomic) NSInteger life;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lifeLabel;
 
 @end
 
@@ -69,6 +72,8 @@
     if (CGRectContainsPoint(bug.frame, self.view.center))
     {
         [bug removeFromSuperview];
+        self.life --;
+        self.lifeLabel.text = [NSString stringWithFormat:@"Life: %d", self.life];
     }
     
     if (CGRectContainsRect(self.view.bounds, bug.frame))
@@ -145,6 +150,8 @@ typedef enum
         }
         [self checkBlowDetected];
     }
+    
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.count];
     
     self.count++;
 }
@@ -241,19 +248,7 @@ typedef enum
 {
     [super viewDidLoad];
     
-//    CGPoint pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-//    self.normalBug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-//    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-//    self.hardBug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-//    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-//    self.lightBug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-//    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-//    self.flyingBug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-//    
-//    [self.view addSubview:self.normalBug];
-//    [self.view addSubview:self.hardBug];
-//    [self.view addSubview:self.lightBug];
-//    [self.view addSubview:self.flyingBug];
+    self.life = 10;
     
     [self startMotionDetection];
     
