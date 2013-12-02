@@ -12,6 +12,7 @@
 #import "LightBug.h"
 #import "FlyingBug.h"
 #import "BlowDetector.h"
+#import "ScoreViewController.h"
 
 
 @interface GameViewController ()
@@ -74,6 +75,16 @@
         [bug removeFromSuperview];
         self.life --;
         self.lifeLabel.text = [NSString stringWithFormat:@"Life: %d", self.life];
+        if(self.life<=0)
+        {
+            UIViewController *scoreViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"score"];
+            if([scoreViewController isKindOfClass:[scoreViewController class]])
+            {
+                ScoreViewController *svc = (ScoreViewController *)scoreViewController;
+                svc.score = self.count;
+                [self.navigationController pushViewController:svc animated:YES];
+            }
+        }
     }
     
     if (CGRectContainsRect(self.view.bounds, bug.frame))

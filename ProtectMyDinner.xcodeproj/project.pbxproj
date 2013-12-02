@@ -31,6 +31,7 @@
 		847F6951184659F40066BAFC /* ProtectMyDinnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F6950184659F40066BAFC /* ProtectMyDinnerTests.m */; };
 		847F695F18465A7E0066BAFC /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 847F695E18465A7E0066BAFC /* GameViewController.m */; };
 		847F696518490F740066BAFC /* bug.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F696418490F740066BAFC /* bug.png */; };
+		849FDE0D184D40AA0003D7AC /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849FDE0C184D40A90003D7AC /* ScoreViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		847F695D18465A7E0066BAFC /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = Controller/GameViewController.h; sourceTree = "<group>"; };
 		847F695E18465A7E0066BAFC /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = Controller/GameViewController.m; sourceTree = "<group>"; };
 		847F696418490F740066BAFC /* bug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bug.png; sourceTree = "<group>"; };
+		849FDE0B184D40A90003D7AC /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreViewController.h; path = Controller/ScoreViewController.h; sourceTree = "<group>"; };
+		849FDE0C184D40A90003D7AC /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreViewController.m; path = Controller/ScoreViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +222,8 @@
 				847F695E18465A7E0066BAFC /* GameViewController.m */,
 				846024A4184C59F400135E17 /* MenuViewController.h */,
 				846024A5184C59F400135E17 /* MenuViewController.m */,
+				849FDE0B184D40A90003D7AC /* ScoreViewController.h */,
+				849FDE0C184D40A90003D7AC /* ScoreViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				84602486184C047300135E17 /* HardBug.m in Sources */,
 				84602489184C05D900135E17 /* NormalBug.m in Sources */,
 				847F695F18465A7E0066BAFC /* GameViewController.m in Sources */,
+				849FDE0D184D40AA0003D7AC /* ScoreViewController.m in Sources */,
 				84602497184C1F9500135E17 /* BlowDetector.m in Sources */,
 				847F6936184659F40066BAFC /* GameAppDelegate.m in Sources */,
 				84123BF518496F3300FC3793 /* Bug.m in Sources */,
