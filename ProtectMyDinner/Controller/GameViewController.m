@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) BlowDetector *blowDetector;
 @property (nonatomic) BOOL isBlowDetectorOn;
+@property (nonatomic) NSInteger count;
 
 @end
 
@@ -57,11 +58,18 @@
 
 - (void)moveBugTowardsCenter: (Bug *)bug
 {
-    CGPoint target = CGPointMake(self.view.center.x - bug.frame.size.width/2, self.view.center.y - bug.frame.size.height/2);
-    CGFloat xIncrement = (target.x - bug.frame.origin.x)/100;
-    CGFloat yIncrement = (target.y - bug.frame.origin.y)/100;
+//    CGPoint target = CGPointMake(self.view.center.x - bug.frame.size.width/2, self.view.center.y - bug.frame.size.height/2);
+//    CGFloat xIncrement = (target.x - bug.frame.origin.x)/100;
+//    CGFloat yIncrement = (target.y - bug.frame.origin.y)/100;
+    CGFloat xIncrement = (self.view.center.x - bug.center.x)/100;
+    CGFloat yIncrement = (self.view.center.y - bug.center.y)/100;
     
     bug.frame =CGRectMake(bug.frame.origin.x + xIncrement, bug.frame.origin.y + yIncrement, bug.frame.size.width, bug.frame.size.height);
+    
+    if (CGRectContainsPoint(bug.frame, self.view.center))
+    {
+        [bug removeFromSuperview];
+    }
     
     if (CGRectContainsRect(self.view.bounds, bug.frame))
     {
@@ -73,12 +81,60 @@
     }
 }
 
+#define BugSizeWidth 50
+#define BugSizeHeight 50
+
+typedef enum
+{
+    NORMAL = 0,
+    HARD = 1,
+    LIGHT = 2,
+    FLYING = 3
+}BUG_TYPE;
+
+- (void)createBug
+{
+    CGPoint pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+    Bug *bug;
+    
+    int type = arc4random() % 4;
+    switch (type) {
+        case NORMAL:
+            bug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            break;
+        case HARD:
+            bug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            break;
+        case LIGHT:
+            bug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            break;
+        case FLYING:
+            bug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            break;
+        default:
+            bug = nil;
+            NSLog(@"The bug type is not normal, hard, light, or flying.");
+            break;
+    }
+    
+    [self.view addSubview:bug];
+}
+
 - (void)update: (NSTimer *)timer
 {
-    [self moveBugTowardsCenter:self.hardBug];
-    [self moveBugTowardsCenter:self.normalBug];
-    [self moveBugTowardsCenter:self.lightBug];
-    [self moveBugTowardsCenter:self.flyingBug];
+    if(self.count % 10 == 0)
+    {
+        [self createBug];
+    }
+    
+    for (UIView *view in self.view.subviews)
+    {
+        if([view isKindOfClass:[Bug class]])
+        {
+            Bug *bug = (Bug *)view;
+            [self moveBugTowardsCenter:bug];
+        }
+    }
     
     if(self.isBlowDetectorOn)
     {
@@ -89,6 +145,8 @@
         }
         [self checkBlowDetected];
     }
+    
+    self.count++;
 }
 
 #define DRIFT_HZ 10
@@ -179,26 +237,23 @@ typedef enum
     return self;
 }
 
-#define BugSizeWidth 100
-#define BugSizeHeight 100
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    CGPoint pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-    self.normalBug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-    self.hardBug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-    self.lightBug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-    self.flyingBug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
-    
-    [self.view addSubview:self.normalBug];
-    [self.view addSubview:self.hardBug];
-    [self.view addSubview:self.lightBug];
-    [self.view addSubview:self.flyingBug];
+//    CGPoint pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+//    self.normalBug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+//    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+//    self.hardBug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+//    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+//    self.lightBug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+//    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+//    self.flyingBug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+//    
+//    [self.view addSubview:self.normalBug];
+//    [self.view addSubview:self.hardBug];
+//    [self.view addSubview:self.lightBug];
+//    [self.view addSubview:self.flyingBug];
     
     [self startMotionDetection];
     

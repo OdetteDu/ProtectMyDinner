@@ -14,7 +14,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"flying"); 
         UIImage *image = [UIImage imageNamed:@"bug.png"];
         self.image = image;
     }
