@@ -7,27 +7,76 @@
 //
 
 #import "GameViewController.h"
+#import "NormalBug.h"
+#import "HardBug.h"
+#import "LightBug.h"
+#import "CMMotionManager+Shared.h"
 
 @interface GameViewController ()
-@property (strong, nonatomic) Bug *bug;
+@property (strong, nonatomic) NormalBug *normalBug;
+@property (strong, nonatomic) HardBug *hardBug;
+@property (strong, nonatomic) LightBug *lightBug;
 @property (strong, nonatomic) NSTimer *timer;
 
 @end
 
 @implementation GameViewController
 
-- (void)moveTowardsCenterForView: (UIView *)view
+- (void)moveBugTowardsCenter: (Bug *)bug
 {
-    CGPoint target = CGPointMake(self.view.center.x - view.frame.size.width/2, self.view.center.y - view.frame.size.height/2);
-    CGFloat xIncrement = (target.x - view.frame.origin.x)/100;
-    CGFloat yIncrement = (target.y - view.frame.origin.y)/100;
+    CGPoint target = CGPointMake(self.view.center.x - bug.frame.size.width/2, self.view.center.y - bug.frame.size.height/2);
+    CGFloat xIncrement = (target.x - bug.frame.origin.x)/100;
+    CGFloat yIncrement = (target.y - bug.frame.origin.y)/100;
     
-    view.frame =CGRectMake(view.frame.origin.x + xIncrement, view.frame.origin.y + yIncrement, view.frame.size.width, view.frame.size.height);
+    bug.frame =CGRectMake(bug.frame.origin.x + xIncrement, bug.frame.origin.y + yIncrement, bug.frame.size.width, bug.frame.size.height);
+    
+    if (CGRectContainsRect(self.view.bounds, bug.frame))
+    {
+        bug.hasEnteredGamePanel = YES;
+    }
 }
 
 - (void)update: (NSTimer *)timer
 {
-    [self moveTowardsCenterForView:self.bug];
+    [self moveBugTowardsCenter:self.hardBug];
+    [self moveBugTowardsCenter:self.normalBug];
+    [self moveBugTowardsCenter:self.lightBug];
+}
+
+#define DRIFT_HZ 10
+#define DRIFT_RATE 10
+
+- (void)startMotionDetection
+{
+    CMMotionManager *motionManager = [CMMotionManager sharedMotionManager];
+    if ([motionManager isAccelerometerAvailable]) {
+        [motionManager setAccelerometerUpdateInterval:1/DRIFT_HZ];
+        [motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *data, NSError *error) {
+            for (UIView *view in self.view.subviews) {
+                
+                if([view isKindOfClass:[LightBug class]])
+                {
+                    LightBug *lb = (LightBug *)view;
+                    if(lb.hasEnteredGamePanel)
+                    {
+                        CGPoint center = view.center;
+                        center.x += data.acceleration.x * DRIFT_RATE;
+                        center.y -= data.acceleration.y * DRIFT_RATE;
+                        view.center = center;
+                        if (!CGRectContainsRect(self.view.bounds, view.frame) && !CGRectIntersectsRect(self.view.bounds, view.frame))
+                        {
+                            [view removeFromSuperview];
+                        }
+                    }
+                }
+            }
+        }];
+    }
+}
+
+- (void)stopMotionDection
+{
+    [[CMMotionManager sharedMotionManager] stopAccelerometerUpdates];
 }
 
 typedef enum
@@ -90,16 +139,24 @@ typedef enum
     [super viewDidLoad];
     
     CGPoint pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
-    self.bug = [[Bug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+    self.normalBug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+    self.hardBug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+    self.lightBug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
     
+    [self.view addSubview:self.normalBug];
+    [self.view addSubview:self.hardBug];
+    [self.view addSubview:self.lightBug];
     
-    [self.view addSubview:self.bug];
-
+    [self startMotionDetection];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self stopMotionDection];
     [self.timer invalidate];
 }
 

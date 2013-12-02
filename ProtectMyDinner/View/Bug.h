@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Bug : UIView
+@property (nonatomic) BOOL hasEnteredGamePanel;
 @property (strong, nonatomic) UIImage *image;
-- (void)pan: (UIPanGestureRecognizer *)recognizer;
+
 @end

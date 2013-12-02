@@ -20,12 +20,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImage *image = [UIImage imageNamed:@"bug.png"];
-        self.image = image;
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;
-        UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-        [self addGestureRecognizer:pangr];
     }
     return self;
 }
@@ -36,36 +32,8 @@
     [self.image drawInRect:self.bounds];
 }
 
-- (void)pan: (UIPanGestureRecognizer *)recognizer
-{
-    if((recognizer.state == UIGestureRecognizerStateChanged) ||
-       (recognizer.state == UIGestureRecognizerStateEnded))
-    {
-        CGPoint translation = [recognizer translationInView:self];
-        [self setCenter:CGPointMake(self.center.x+translation.x, self.center.y+translation.y)];
-        
-        if([self isOutOfBounds])
-        {
-            [self removeFromSuperview];
-        }
-        
-        [recognizer setTranslation:CGPointZero inView:self];
-    }
-}
 
-- (BOOL)isOutOfBounds
-{
-    if(self.frame.origin.x < self.superview.bounds.origin.x || self.frame.origin.x + self.frame.size.width > self.superview.bounds.origin.y + self.superview.bounds.size.width)
-    {
-        return YES;
-    }
-    
-    if(self.frame.origin.y < self.superview.bounds.origin.y || self.frame.origin.y + self.frame.size.height > self.superview.bounds.origin.y + self.superview.bounds.size.height)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
+
+
 
 @end
