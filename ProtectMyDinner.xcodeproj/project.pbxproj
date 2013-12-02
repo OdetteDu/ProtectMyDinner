@@ -14,6 +14,7 @@
 		8460248F184C0BE200135E17 /* CMMotionManager+Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460248E184C0BE200135E17 /* CMMotionManager+Shared.m */; };
 		84602491184C0C2700135E17 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84602490184C0C2700135E17 /* CoreMotion.framework */; };
 		84602494184C11CA00135E17 /* FlyingBug.m in Sources */ = {isa = PBXBuildFile; fileRef = 84602493184C11CA00135E17 /* FlyingBug.m */; };
+		84602497184C1F9500135E17 /* BlowDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 84602496184C1F9500135E17 /* BlowDetector.m */; };
 		847F6926184659F40066BAFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6925184659F40066BAFC /* Foundation.framework */; };
 		847F6928184659F40066BAFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6927184659F40066BAFC /* CoreGraphics.framework */; };
 		847F692A184659F40066BAFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847F6929184659F40066BAFC /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 		84602490184C0C2700135E17 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		84602492184C11CA00135E17 /* FlyingBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlyingBug.h; path = View/FlyingBug.h; sourceTree = "<group>"; };
 		84602493184C11CA00135E17 /* FlyingBug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlyingBug.m; path = View/FlyingBug.m; sourceTree = "<group>"; };
+		84602495184C1F9500135E17 /* BlowDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlowDetector.h; sourceTree = "<group>"; };
+		84602496184C1F9500135E17 /* BlowDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlowDetector.m; sourceTree = "<group>"; };
 		847F6922184659F40066BAFC /* ProtectMyDinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtectMyDinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847F6925184659F40066BAFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		847F6927184659F40066BAFC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -145,6 +148,8 @@
 				847F692C184659F40066BAFC /* Supporting Files */,
 				8460248D184C0BE200135E17 /* CMMotionManager+Shared.h */,
 				8460248E184C0BE200135E17 /* CMMotionManager+Shared.m */,
+				84602495184C1F9500135E17 /* BlowDetector.h */,
+				84602496184C1F9500135E17 /* BlowDetector.m */,
 			);
 			path = ProtectMyDinner;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				84602486184C047300135E17 /* HardBug.m in Sources */,
 				84602489184C05D900135E17 /* NormalBug.m in Sources */,
 				847F695F18465A7E0066BAFC /* GameViewController.m in Sources */,
+				84602497184C1F9500135E17 /* BlowDetector.m in Sources */,
 				847F6936184659F40066BAFC /* GameAppDelegate.m in Sources */,
 				84123BF518496F3300FC3793 /* Bug.m in Sources */,
 				847F6932184659F40066BAFC /* main.m in Sources */,

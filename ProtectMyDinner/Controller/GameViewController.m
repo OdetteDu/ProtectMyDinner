@@ -5,22 +5,55 @@
 //  Created by Caidie on 11/27/13.
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
-
+#import "CMMotionManager+Shared.h"
 #import "GameViewController.h"
 #import "NormalBug.h"
 #import "HardBug.h"
 #import "LightBug.h"
-#import "CMMotionManager+Shared.h"
+#import "FlyingBug.h"
+#import "BlowDetector.h"
+
 
 @interface GameViewController ()
 @property (strong, nonatomic) NormalBug *normalBug;
 @property (strong, nonatomic) HardBug *hardBug;
 @property (strong, nonatomic) LightBug *lightBug;
+@property (strong, nonatomic) FlyingBug *flyingBug;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) BlowDetector *blowDetector;
+@property (nonatomic) BOOL isBlowDetectorOn;
 
 @end
 
 @implementation GameViewController
+
+- (void) checkBlowDetected
+{
+    if(self.blowDetector)
+    {
+        if(self.blowDetector.blowDetected)
+        {
+            [self.blowDetector end];
+            self.blowDetector = nil;
+            NSLog(@"Blow Detected");
+            for (UIView *view in self.view.subviews) {
+                
+                if([view isKindOfClass:[FlyingBug class]])
+                {
+                    FlyingBug *lb = (FlyingBug *)view;
+                    [lb removeFromSuperview];
+                    if(self.isBlowDetectorOn)
+                    {
+                        self.isBlowDetectorOn = NO;
+                        [self.blowDetector end];
+                        self.blowDetector = nil;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
 
 - (void)moveBugTowardsCenter: (Bug *)bug
 {
@@ -32,6 +65,10 @@
     
     if (CGRectContainsRect(self.view.bounds, bug.frame))
     {
+        if(bug.hasEnteredGamePanel == NO && [bug isKindOfClass:[FlyingBug class]])
+        {
+            self.isBlowDetectorOn = YES;
+        }
         bug.hasEnteredGamePanel = YES;
     }
 }
@@ -41,6 +78,17 @@
     [self moveBugTowardsCenter:self.hardBug];
     [self moveBugTowardsCenter:self.normalBug];
     [self moveBugTowardsCenter:self.lightBug];
+    [self moveBugTowardsCenter:self.flyingBug];
+    
+    if(self.isBlowDetectorOn)
+    {
+        if(!self.blowDetector)
+        {
+            self.blowDetector = [[BlowDetector alloc] init];
+            [self. blowDetector start];
+        }
+        [self checkBlowDetected];
+    }
 }
 
 #define DRIFT_HZ 10
@@ -144,10 +192,13 @@ typedef enum
     self.hardBug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
     pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
     self.lightBug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+    pos = [self getRandomLocationOutsideBounds:CGSizeMake(BugSizeWidth, BugSizeHeight)];
+    self.flyingBug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
     
     [self.view addSubview:self.normalBug];
     [self.view addSubview:self.hardBug];
     [self.view addSubview:self.lightBug];
+    [self.view addSubview:self.flyingBug];
     
     [self startMotionDetection];
     
