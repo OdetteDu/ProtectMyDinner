@@ -30,7 +30,7 @@
            (recognizer.state == UIGestureRecognizerStateEnded))
         {
             CGPoint translation = [recognizer translationInView:self];
-            [self setCenter:CGPointMake(self.center.x+translation.x, self.center.y+translation.y)];
+            self.transform = CGAffineTransformTranslate(self.transform, translation.x, translation.y);
             
             if (!CGRectContainsRect(self.superview.bounds, self.frame))
             {

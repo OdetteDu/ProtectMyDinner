@@ -12,4 +12,6 @@
 @property (nonatomic) BOOL hasEnteredGamePanel;
 @property (strong, nonatomic) UIImage *image;
 
+- (void)rotateTowardsCenter: (CGPoint)center;
+
 @end

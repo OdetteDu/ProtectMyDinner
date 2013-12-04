@@ -88,13 +88,14 @@
 
 - (void)moveBugTowardsCenter: (Bug *)bug
 {
-//    CGPoint target = CGPointMake(self.view.center.x - bug.frame.size.width/2, self.view.center.y - bug.frame.size.height/2);
-//    CGFloat xIncrement = (target.x - bug.frame.origin.x)/100;
-//    CGFloat yIncrement = (target.y - bug.frame.origin.y)/100;
     CGFloat xIncrement = (self.view.center.x - bug.center.x)/100;
     CGFloat yIncrement = (self.view.center.y - bug.center.y)/100;
     
+    //NSLog(@"Before: %f, %f", bug.center.x, bug.center.y);
     bug.frame =CGRectMake(bug.frame.origin.x + xIncrement, bug.frame.origin.y + yIncrement, bug.frame.size.width, bug.frame.size.height);
+//    [bug setCenter:CGPointMake(bug.frame.origin.x + xIncrement, bug.frame.origin.y + yIncrement)];
+//    bug.transform = CGAffineTransformTranslate(bug.transform, xIncrement, yIncrement);
+    //NSLog(@"After: %f, %f", bug.center.x, bug.center.y);
     
     if (CGRectContainsPoint(bug.frame, self.view.center))
     {
@@ -171,6 +172,7 @@ typedef enum
             break;
     }
     
+    [bug rotateTowardsCenter:self.view.center];
     [self.view addSubview:bug];
 }
 
@@ -253,6 +255,8 @@ typedef enum
 
 - (CGPoint)getRandomLocationOutsideBounds: (CGSize)viewSize
 {
+    //return CGPointMake(self.view.bounds.size.width, self.view.bounds.size.height);
+    
     CGRect bugBounds = self.view.bounds;
     CGFloat x;
     CGFloat y;

@@ -36,7 +36,6 @@
 
 - (void)play
 {
-    NSLog(@"Play");
     [self.player play];
 }
 @end
