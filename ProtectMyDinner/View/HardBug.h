@@ -7,7 +7,9 @@
 //
 
 #import "Bug.h"
+#import "GameSoundPlayer.h"
 
 @interface HardBug : Bug
+@property (nonatomic, strong) GameSoundPlayer *gameSoundPlayer;
 - (void)pan: (UIPanGestureRecognizer *)recognizer;
 @end

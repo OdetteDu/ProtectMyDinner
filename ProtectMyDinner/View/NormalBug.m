@@ -8,13 +8,17 @@
 
 #import "NormalBug.h"
 
+
+@interface NormalBug()
+@end
+
 @implementation NormalBug
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImage *image = [UIImage imageNamed:@"bug.png"];
+        UIImage *image = [UIImage imageNamed:@"NormalBug.png"];
         self.image = image;
         UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
         [self addGestureRecognizer:tapgr];
@@ -28,6 +32,7 @@
     {
         if(recognizer.state == UIGestureRecognizerStateEnded)
         {
+            [self.gameSoundPlayer play];
             [self removeFromSuperview];
         }
     }

@@ -16,7 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImage *image = [UIImage imageNamed:@"bug.png"];
+        UIImage *image = [UIImage imageNamed:@"LightBug.png"];
         self.image = image;
     }
     return self;

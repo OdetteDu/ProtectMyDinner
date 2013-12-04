@@ -7,7 +7,8 @@
 //
 
 #import "Bug.h"
+#import "GameSoundPlayer.h"
 
 @interface NormalBug : Bug
-
+@property (nonatomic, strong) GameSoundPlayer *gameSoundPlayer;
 @end

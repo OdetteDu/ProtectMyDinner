@@ -5,6 +5,7 @@
 //  Created by Caidie on 11/27/13.
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
+#import <AVFoundation/AVFoundation.h>
 #import "CMMotionManager+Shared.h"
 #import "GameViewController.h"
 #import "NormalBug.h"
@@ -13,6 +14,8 @@
 #import "FlyingBug.h"
 #import "BlowDetector.h"
 #import "ScoreViewController.h"
+#import "GameBackgroundMusicPlayer.h"
+#import "GameSoundPlayer.h"
 
 
 @interface GameViewController ()
@@ -27,10 +30,30 @@
 @property (nonatomic) NSInteger life;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lifeLabel;
-
+@property (strong, nonatomic) GameBackgroundMusicPlayer *backgroundMusicPlayer;
+@property (strong, nonatomic) GameSoundPlayer *gameSoundPlayer;
 @end
 
 @implementation GameViewController
+
+- (GameBackgroundMusicPlayer *)backgroundMusicPlayer
+{
+    if(!_backgroundMusicPlayer)
+    {
+        _backgroundMusicPlayer = [[GameBackgroundMusicPlayer alloc] init];
+    }
+    return _backgroundMusicPlayer;
+}
+
+- (GameSoundPlayer *)gameSoundPlayer
+{
+    if(!_gameSoundPlayer)
+    {
+        _gameSoundPlayer = [[GameSoundPlayer alloc] init];
+        _gameSoundPlayer.fileName = [NSString stringWithFormat:@"NormalBug"];
+    }
+    return _gameSoundPlayer;
+}
 
 - (void) checkBlowDetected
 {
@@ -47,11 +70,14 @@
                 {
                     FlyingBug *lb = (FlyingBug *)view;
                     [lb removeFromSuperview];
+                    
                     if(self.isBlowDetectorOn)
                     {
+                        [self.gameSoundPlayer play];
                         self.isBlowDetectorOn = NO;
                         [self.blowDetector end];
                         self.blowDetector = nil;
+                        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
                     }
                     
                 }
@@ -72,6 +98,7 @@
     
     if (CGRectContainsPoint(bug.frame, self.view.center))
     {
+        [self.gameSoundPlayer play];
         [bug removeFromSuperview];
         self.life --;
         self.lifeLabel.text = [NSString stringWithFormat:@"Life: %d", self.life];
@@ -116,13 +143,24 @@ typedef enum
     int type = arc4random() % 4;
     switch (type) {
         case NORMAL:
+        {
             bug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            NormalBug *nb = (NormalBug *)bug;
+            nb.gameSoundPlayer = self.gameSoundPlayer;
+        }
             break;
         case HARD:
+        {
             bug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            HardBug *hb = (HardBug *)bug;
+            hb.gameSoundPlayer = self.gameSoundPlayer;
+        }
             break;
         case LIGHT:
+        {
             bug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            [self.gameSoundPlayer play];
+        }
             break;
         case FLYING:
             bug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
@@ -152,6 +190,7 @@ typedef enum
         }
     }
     
+    //self.isBlowDetectorOn = NO;
     if(self.isBlowDetectorOn)
     {
         if(!self.blowDetector)
@@ -189,6 +228,7 @@ typedef enum
                         view.center = center;
                         if (!CGRectContainsRect(self.view.bounds, view.frame) && !CGRectIntersectsRect(self.view.bounds, view.frame))
                         {
+                            [self.gameSoundPlayer play];
                             [view removeFromSuperview];
                         }
                     }
@@ -262,7 +302,8 @@ typedef enum
     self.life = 10;
     
     [self startMotionDetection];
-    
+    [self.backgroundMusicPlayer play];
+    [self.gameSoundPlayer prepareToPlay];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
 }
 

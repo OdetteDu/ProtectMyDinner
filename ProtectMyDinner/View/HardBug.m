@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImage *image = [UIImage imageNamed:@"bug.png"];
+        UIImage *image = [UIImage imageNamed:@"HardBug.png"];
         self.image = image;
         UIPanGestureRecognizer *pangr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
         [self addGestureRecognizer:pangr];
@@ -34,6 +34,7 @@
             
             if (!CGRectContainsRect(self.superview.bounds, self.frame))
             {
+                [self.gameSoundPlayer play];
                 [self removeFromSuperview];
             }
             

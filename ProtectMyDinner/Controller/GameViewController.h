@@ -11,7 +11,4 @@
 
 @interface GameViewController : UIViewController
 
-//@property (strong, atomic) NSMutableArray *bugs; //of Bug
-
-
 @end
