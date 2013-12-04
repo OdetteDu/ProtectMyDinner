@@ -225,8 +225,8 @@ typedef enum
                     if(lb.hasEnteredGamePanel)
                     {
                         CGPoint center = view.center;
-                        center.x += data.acceleration.x * DRIFT_RATE;
-                        center.y -= data.acceleration.y * DRIFT_RATE;
+                        center.x -= data.acceleration.y * DRIFT_RATE;
+                        center.y -= data.acceleration.x * DRIFT_RATE;
                         view.center = center;
                         if (!CGRectContainsRect(self.view.bounds, view.frame) && !CGRectIntersectsRect(self.view.bounds, view.frame))
                         {
