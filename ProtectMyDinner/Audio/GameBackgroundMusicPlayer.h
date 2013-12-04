@@ -10,4 +10,5 @@
 
 @interface GameBackgroundMusicPlayer : NSObject
 - (void)play;
+- (void) end;
 @end

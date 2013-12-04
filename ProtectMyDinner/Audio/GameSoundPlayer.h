@@ -12,4 +12,6 @@
 @property (nonatomic, strong) NSString *fileName;
 - (void)prepareToPlay;
 - (void)play;
+- (void)setVolumn: (NSInteger)volumn;
+- (void) end;
 @end

@@ -1,25 +1,24 @@
 //
-//  ScoreViewController.m
+//  HelpViewController.m
 //  ProtectMyDinner
 //
-//  Created by Caidie on 12/2/13.
+//  Created by Caidie on 12/4/13.
 //  Copyright (c) 2013 Rice. All rights reserved.
 //
 
-#import "ScoreViewController.h"
+#import "HelpViewController.h"
 
-@interface ScoreViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@interface HelpViewController ()
 
 @end
 
-@implementation ScoreViewController
+@implementation HelpViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"initWithNibName");
+        // Custom initialization
     }
     return self;
 }
@@ -27,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d", 66666666];
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,4 +35,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

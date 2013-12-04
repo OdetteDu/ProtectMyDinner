@@ -38,4 +38,16 @@
 {
     [self.player play];
 }
+
+- (void)setVolumn: (NSInteger)volumn
+{
+    [self.player setVolume:volumn];
+}
+
+- (void) end
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [self.player stop];
+    self.player = nil;
+}
 @end

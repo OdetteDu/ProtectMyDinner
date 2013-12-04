@@ -35,4 +35,11 @@
     [self.player play];
 }
 
+- (void) end
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [self.player stop];
+    self.player = nil;
+}
+
 @end

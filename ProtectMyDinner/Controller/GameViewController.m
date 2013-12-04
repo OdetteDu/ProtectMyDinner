@@ -77,6 +77,7 @@
                         self.isBlowDetectorOn = NO;
                         [self.blowDetector end];
                         self.blowDetector = nil;
+                        [self.gameSoundPlayer setVolumn:10];
                         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
                     }
                     
@@ -145,26 +146,26 @@ typedef enum
     switch (type) {
         case NORMAL:
         {
-            bug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            bug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/2, 90/2)];
             NormalBug *nb = (NormalBug *)bug;
             nb.gameSoundPlayer = self.gameSoundPlayer;
         }
             break;
         case HARD:
         {
-            bug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            bug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/2, 70/2)];
             HardBug *hb = (HardBug *)bug;
             hb.gameSoundPlayer = self.gameSoundPlayer;
         }
             break;
         case LIGHT:
         {
-            bug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            bug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/4, 50/4)];
             [self.gameSoundPlayer play];
         }
             break;
         case FLYING:
-            bug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, BugSizeWidth, BugSizeHeight)];
+            bug = [[FlyingBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/4, 80/4)];
             break;
         default:
             bug = nil;
@@ -198,6 +199,7 @@ typedef enum
         if(!self.blowDetector)
         {
             self.blowDetector = [[BlowDetector alloc] init];
+            [self.gameSoundPlayer setVolumn:1];
             [self. blowDetector start];
         }
         [self checkBlowDetected];
@@ -315,6 +317,8 @@ typedef enum
 {
     [self stopMotionDection];
     [self.timer invalidate];
+    [self.gameSoundPlayer end];
+    [self.backgroundMusicPlayer end];
 }
 
 - (void)didReceiveMemoryWarning
@@ -323,4 +327,8 @@ typedef enum
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
