@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%d", 66666666];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.score];
 }
 
 - (void)didReceiveMemoryWarning

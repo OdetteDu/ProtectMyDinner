@@ -31,7 +31,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lifeLabel;
 @property (strong, nonatomic) GameBackgroundMusicPlayer *backgroundMusicPlayer;
-@property (strong, nonatomic) GameSoundPlayer *gameSoundPlayer;
+@property (strong, nonatomic) GameSoundPlayer *normalBugSoundPlayer;
+@property (strong, nonatomic) GameSoundPlayer *hardBugSoundPlayer;
+@property (strong, nonatomic) GameSoundPlayer *lightBugSoundPlayer;
+@property (strong, nonatomic) GameSoundPlayer *flyingBugSoundPlayer;
+@property (strong, nonatomic) GameSoundPlayer *cakeSoundPlayer;
 @end
 
 @implementation GameViewController
@@ -45,14 +49,54 @@
     return _backgroundMusicPlayer;
 }
 
-- (GameSoundPlayer *)gameSoundPlayer
+- (GameSoundPlayer *)cakeSoundPlayer
 {
-    if(!_gameSoundPlayer)
+    if(!_cakeSoundPlayer)
     {
-        _gameSoundPlayer = [[GameSoundPlayer alloc] init];
-        _gameSoundPlayer.fileName = [NSString stringWithFormat:@"NormalBug"];
+        _cakeSoundPlayer = [[GameSoundPlayer alloc] init];
+        _cakeSoundPlayer.fileName = [NSString stringWithFormat:@"cake"];
     }
-    return _gameSoundPlayer;
+    return _cakeSoundPlayer;
+}
+
+- (GameSoundPlayer *)normalBugSoundPlayer
+{
+    if(!_normalBugSoundPlayer)
+    {
+        _normalBugSoundPlayer = [[GameSoundPlayer alloc] init];
+        _normalBugSoundPlayer.fileName = [NSString stringWithFormat:@"NormalBug"];
+    }
+    return _normalBugSoundPlayer;
+}
+
+- (GameSoundPlayer *)hardBugSoundPlayer
+{
+    if(!_hardBugSoundPlayer)
+    {
+        _hardBugSoundPlayer = [[GameSoundPlayer alloc] init];
+        _hardBugSoundPlayer.fileName = [NSString stringWithFormat:@"HardBug"];
+    }
+    return _hardBugSoundPlayer;
+}
+
+- (GameSoundPlayer *)lightBugSoundPlayer
+{
+    if(!_lightBugSoundPlayer)
+    {
+        _lightBugSoundPlayer = [[GameSoundPlayer alloc] init];
+        _lightBugSoundPlayer.fileName = [NSString stringWithFormat:@"LightBug"];
+    }
+    return _lightBugSoundPlayer;
+}
+
+- (GameSoundPlayer *)flyingBugSoundPlayer
+{
+    if(!_flyingBugSoundPlayer)
+    {
+        _flyingBugSoundPlayer = [[GameSoundPlayer alloc] init];
+        _flyingBugSoundPlayer.fileName = [NSString stringWithFormat:@"FlyingBug"];
+    }
+    return _flyingBugSoundPlayer;
 }
 
 - (void) checkBlowDetected
@@ -73,11 +117,15 @@
                     
                     if(self.isBlowDetectorOn)
                     {
-                        [self.gameSoundPlayer play];
+                        [self.flyingBugSoundPlayer play];
                         self.isBlowDetectorOn = NO;
                         [self.blowDetector end];
                         self.blowDetector = nil;
-                        [self.gameSoundPlayer setVolumn:10];
+                        [self.normalBugSoundPlayer setVolumn:10];
+                        [self.hardBugSoundPlayer setVolumn:10];
+                        [self.flyingBugSoundPlayer setVolumn:5];
+                        [self.lightBugSoundPlayer setVolumn:10];
+                        [self.cakeSoundPlayer setVolumn:10];
                         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
                     }
                     
@@ -100,7 +148,7 @@
     
     if (CGRectContainsPoint(bug.frame, self.view.center))
     {
-        [self.gameSoundPlayer play];
+        [self.cakeSoundPlayer play];
         [bug removeFromSuperview];
         self.life --;
         self.lifeLabel.text = [NSString stringWithFormat:@"Life: %d", self.life];
@@ -148,20 +196,20 @@ typedef enum
         {
             bug = [[NormalBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/2, 90/2)];
             NormalBug *nb = (NormalBug *)bug;
-            nb.gameSoundPlayer = self.gameSoundPlayer;
+            nb.gameSoundPlayer = self.normalBugSoundPlayer;
         }
             break;
         case HARD:
         {
             bug = [[HardBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/2, 70/2)];
             HardBug *hb = (HardBug *)bug;
-            hb.gameSoundPlayer = self.gameSoundPlayer;
+            hb.gameSoundPlayer = self.hardBugSoundPlayer;
         }
             break;
         case LIGHT:
         {
             bug = [[LightBug alloc] initWithFrame:CGRectMake(pos.x, pos.y, 100/4, 50/4)];
-            [self.gameSoundPlayer play];
+            //[self.lightBugSoundPlayer play];
         }
             break;
         case FLYING:
@@ -199,7 +247,12 @@ typedef enum
         if(!self.blowDetector)
         {
             self.blowDetector = [[BlowDetector alloc] init];
-            [self.gameSoundPlayer setVolumn:1];
+
+            [self.normalBugSoundPlayer setVolumn:1];
+            [self.hardBugSoundPlayer setVolumn:1];
+            [self.flyingBugSoundPlayer setVolumn:1];
+            [self.lightBugSoundPlayer setVolumn:1];
+            [self.cakeSoundPlayer setVolumn:1];
             [self. blowDetector start];
         }
         [self checkBlowDetected];
@@ -232,7 +285,7 @@ typedef enum
                         view.center = center;
                         if (!CGRectContainsRect(self.view.bounds, view.frame) && !CGRectIntersectsRect(self.view.bounds, view.frame))
                         {
-                            [self.gameSoundPlayer play];
+                            [self.lightBugSoundPlayer play];
                             [view removeFromSuperview];
                         }
                     }
@@ -309,7 +362,11 @@ typedef enum
     
     [self startMotionDetection];
     [self.backgroundMusicPlayer play];
-    [self.gameSoundPlayer prepareToPlay];
+    [self.normalBugSoundPlayer prepareToPlay];
+    [self.hardBugSoundPlayer prepareToPlay];
+    [self.flyingBugSoundPlayer prepareToPlay];
+    [self.lightBugSoundPlayer prepareToPlay];
+    [self.cakeSoundPlayer prepareToPlay];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
 }
 
@@ -317,7 +374,11 @@ typedef enum
 {
     [self stopMotionDection];
     [self.timer invalidate];
-    [self.gameSoundPlayer end];
+    [self.normalBugSoundPlayer end];
+    [self.hardBugSoundPlayer end];
+    [self.flyingBugSoundPlayer end];
+    [self.lightBugSoundPlayer end];
+    [self.cakeSoundPlayer end];
     [self.backgroundMusicPlayer end];
 }
 

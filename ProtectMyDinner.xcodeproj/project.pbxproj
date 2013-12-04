@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		84024553184EB5AA0020C10D /* GameBackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84024552184EB5AA0020C10D /* GameBackgroundMusicPlayer.m */; };
-		8402455C184EC7C50020C10D /* NormalBug.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8402455B184EC7C50020C10D /* NormalBug.mp3 */; };
 		8402455E184EC99A0020C10D /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8402455D184EC99A0020C10D /* Background.mp3 */; };
 		84024561184ECB300020C10D /* GameSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84024560184ECB300020C10D /* GameSoundPlayer.m */; };
 		84123BF518496F3300FC3793 /* Bug.m in Sources */ = {isa = PBXBuildFile; fileRef = 84123BF418496F3300FC3793 /* Bug.m */; };
@@ -30,6 +29,11 @@
 		843370F0184F7B6300170882 /* Help.png in Resources */ = {isa = PBXBuildFile; fileRef = 843370EF184F7B6300170882 /* Help.png */; };
 		843370F2184F7D0300170882 /* HelpBtnSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 843370F1184F7D0300170882 /* HelpBtnSmall.png */; };
 		843370F5184F7D6D00170882 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843370F4184F7D6D00170882 /* HelpViewController.m */; };
+		843370F7184F80F300170882 /* FlyingBug.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 843370F6184F80F300170882 /* FlyingBug.mp3 */; };
+		843370FB184F8B4800170882 /* cake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 843370F8184F8B4800170882 /* cake.mp3 */; };
+		843370FC184F8B4800170882 /* HardBug.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 843370F9184F8B4800170882 /* HardBug.mp3 */; };
+		843370FD184F8B4800170882 /* LightBug.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 843370FA184F8B4800170882 /* LightBug.mp3 */; };
+		843370FF184F8B5100170882 /* NormalBug.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 843370FE184F8B5100170882 /* NormalBug.mp3 */; };
 		84602486184C047300135E17 /* HardBug.m in Sources */ = {isa = PBXBuildFile; fileRef = 84602485184C047300135E17 /* HardBug.m */; };
 		84602489184C05D900135E17 /* NormalBug.m in Sources */ = {isa = PBXBuildFile; fileRef = 84602488184C05D900135E17 /* NormalBug.m */; };
 		8460248C184C08FB00135E17 /* LightBug.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460248B184C08FB00135E17 /* LightBug.m */; };
@@ -68,7 +72,6 @@
 /* Begin PBXFileReference section */
 		84024551184EB5AA0020C10D /* GameBackgroundMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameBackgroundMusicPlayer.h; path = Audio/GameBackgroundMusicPlayer.h; sourceTree = "<group>"; };
 		84024552184EB5AA0020C10D /* GameBackgroundMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameBackgroundMusicPlayer.m; path = Audio/GameBackgroundMusicPlayer.m; sourceTree = "<group>"; };
-		8402455B184EC7C50020C10D /* NormalBug.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NormalBug.mp3; sourceTree = "<group>"; };
 		8402455D184EC99A0020C10D /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
 		8402455F184ECB300020C10D /* GameSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSoundPlayer.h; path = Audio/GameSoundPlayer.h; sourceTree = "<group>"; };
 		84024560184ECB300020C10D /* GameSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameSoundPlayer.m; path = Audio/GameSoundPlayer.m; sourceTree = "<group>"; };
@@ -94,6 +97,11 @@
 		843370F1184F7D0300170882 /* HelpBtnSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelpBtnSmall.png; sourceTree = "<group>"; };
 		843370F3184F7D6D00170882 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpViewController.h; path = Controller/HelpViewController.h; sourceTree = "<group>"; };
 		843370F4184F7D6D00170882 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpViewController.m; path = Controller/HelpViewController.m; sourceTree = "<group>"; };
+		843370F6184F80F300170882 /* FlyingBug.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FlyingBug.mp3; sourceTree = "<group>"; };
+		843370F8184F8B4800170882 /* cake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cake.mp3; sourceTree = "<group>"; };
+		843370F9184F8B4800170882 /* HardBug.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HardBug.mp3; sourceTree = "<group>"; };
+		843370FA184F8B4800170882 /* LightBug.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LightBug.mp3; sourceTree = "<group>"; };
+		843370FE184F8B5100170882 /* NormalBug.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NormalBug.mp3; sourceTree = "<group>"; };
 		84602484184C047300135E17 /* HardBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HardBug.h; path = View/HardBug.h; sourceTree = "<group>"; };
 		84602485184C047300135E17 /* HardBug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HardBug.m; path = View/HardBug.m; sourceTree = "<group>"; };
 		84602487184C05D900135E17 /* NormalBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NormalBug.h; path = View/NormalBug.h; sourceTree = "<group>"; };
@@ -160,8 +168,12 @@
 		84024550184EB5810020C10D /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				843370FE184F8B5100170882 /* NormalBug.mp3 */,
+				843370F8184F8B4800170882 /* cake.mp3 */,
+				843370F9184F8B4800170882 /* HardBug.mp3 */,
+				843370FA184F8B4800170882 /* LightBug.mp3 */,
+				843370F6184F80F300170882 /* FlyingBug.mp3 */,
 				8402455D184EC99A0020C10D /* Background.mp3 */,
-				8402455B184EC7C50020C10D /* NormalBug.mp3 */,
 				84602495184C1F9500135E17 /* BlowDetector.h */,
 				84602496184C1F9500135E17 /* BlowDetector.m */,
 				84024551184EB5AA0020C10D /* GameBackgroundMusicPlayer.h */,
@@ -397,9 +409,11 @@
 				843370DB184F6A2100170882 /* Score.png in Resources */,
 				843370D3184F690400170882 /* NormalBug.png in Resources */,
 				843370F2184F7D0300170882 /* HelpBtnSmall.png in Resources */,
-				8402455C184EC7C50020C10D /* NormalBug.mp3 in Resources */,
+				843370FF184F8B5100170882 /* NormalBug.mp3 in Resources */,
 				843370EA184F73BE00170882 /* StartBtn.png in Resources */,
 				843370E8184F73BE00170882 /* MediumBtn.png in Resources */,
+				843370F7184F80F300170882 /* FlyingBug.mp3 in Resources */,
+				843370FC184F8B4800170882 /* HardBug.mp3 in Resources */,
 				843370D6184F690400170882 /* FlyingBug.png in Resources */,
 				843370E9184F73BE00170882 /* MenuBtn.png in Resources */,
 				843370D4184F690400170882 /* HardBug.png in Resources */,
@@ -407,7 +421,9 @@
 				847F6930184659F40066BAFC /* InfoPlist.strings in Resources */,
 				843370F0184F7B6300170882 /* Help.png in Resources */,
 				843370D5184F690400170882 /* LightBug.png in Resources */,
+				843370FD184F8B4800170882 /* LightBug.mp3 in Resources */,
 				847F6939184659F40066BAFC /* Main.storyboard in Resources */,
+				843370FB184F8B4800170882 /* cake.mp3 in Resources */,
 				843370EC184F746100170882 /* BackBtn.png in Resources */,
 				843370E4184F73BE00170882 /* EasyBtn.png in Resources */,
 				843370E6184F73BE00170882 /* HelpBtn.png in Resources */,
